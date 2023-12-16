@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+
+    </style>
+</head>
+<body>
+<div id="root" >
+    <div id="time" class="item"></div>
+    <button id ='btn'>старт</button>
+    <button id ='btn2'>стоп</button>
+
+</div>
+<script>
+    const root = document.getElementById('root')
+    const time = document.getElementById('time')
+    const btn = document.getElementById('btn')
+    const btn2 = document.getElementById('btn2')
+    let seconds = 0
+    let minutes = 0
+    let hours = 0
+
+
+    // setInterval(()=> time.innerText = `${ new Date().getHours()} : ${new Date().getMinutes()} : ${new Date().getSeconds()}`,1000)
+
+    btn.addEventListener('click',() => {
+      const id = setInterval(()=>
+          {
+            time.innerText= `${hours}:${minutes}:${seconds}`
+              seconds+=600
+              if (seconds>=60){
+                  minutes=minutes+ Math.trunc(seconds/60)
+                  seconds=0
+              }
+              if (minutes>=60){
+                  hours=hours+Math.trunc(minutes/60)
+                  minutes=0
+              }
+
+          }
+      ,1000)
+    })
+    btn2.addEventListener('click',()=>{
+        setInterval(()=>clearInterval(id),1000)
+    })
+
+
+</script>
+</body>
